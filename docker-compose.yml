@@ -1,0 +1,23 @@
+vocbench:
+  build: vocbench
+  links:
+   - vocbench-db:mysql
+   - vocbench-sesame:sesame
+   - vocbench-st:st
+  ports:
+   - "10140:8080"
+vocbench-db:
+  image: mariadb
+  environment:
+    - MYSQL_USER=vocbench
+    - MYSQL_PASSWORD=ieg9ohZi
+    - MYSQL_DATABASE=vocbench
+    - MYSQL_ROOT_PASSWORD=changeme
+vocbench-sesame:
+  image: openuniversity/sesame
+  ports:
+   - "10150:8080"
+vocbench-st:
+  build: semantic-turkey
+  links:
+    - vocbench-sesame:sesame
