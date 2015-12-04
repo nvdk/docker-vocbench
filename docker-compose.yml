@@ -5,7 +5,9 @@ vocbench:
    - vocbench-sesame:sesame
    - vocbench-st:st
   ports:
-   - "10140:8080"
+    - "10140:8080"
+  volumes: 
+    - ./upload:/usr/local/tomcat/temp
 vocbench-db:
   image: mariadb
   environment:
@@ -19,5 +21,7 @@ vocbench-sesame:
    - "10150:8080"
 vocbench-st:
   build: semantic-turkey
+  volumes: 
+    - ./upload:/usr/local/tomcat/temp
   links:
     - vocbench-sesame:sesame
